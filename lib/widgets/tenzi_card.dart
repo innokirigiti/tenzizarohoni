@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tenzi/constants.dart';
 import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/pages/tenzi_details.dart';
-import 'package:tenzi/models/tenzi.dart';
 
-class LessonCard extends StatelessWidget {
-  final Tenzi lesson;
-  LessonCard({required this.lesson});
+class TenziCard extends StatelessWidget {
+  final Tenzi tenzi;
+
+  TenziCard({required this.tenzi});
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -14,11 +15,7 @@ class LessonCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TenziDetails(
-              //ToDo - Hardcoded data, make it real depending on `ariving` data
-                tenzi: Tenzi(titleNo: '1', titleEnglish: 'En title',
-                    title: 'Mwokozi Mungu', verses: 'Vers blah blah')
-            ),
+            builder: (context) => TenziDetails(tenzi: tenzi),
           ),
         );
       }, // Handle onTap anywhere along the lesson card
@@ -26,7 +23,6 @@ class LessonCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 10.0),
         padding: EdgeInsets.all(6.0),
         width: double.infinity,
-        // height: ScreenUtil().setHeight(65.0), original
         height: 65,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -43,22 +39,19 @@ class LessonCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              // height: ScreenUtil().setHeight(55.0),
-              // width: ScreenUtil().setWidth(55.0),
               height: 55.0,
               width: 55.0,
               decoration: BoxDecoration(
-                // color: Color.fromRGBO(224, 230, 255, 1),
-                color: Colors.amber[800]
-              ),
+                  // color: Color.fromRGBO(224, 230, 255, 1),
+                  color: Colors.amber[800]),
               child: Center(
-                child: Text(this.lesson.titleNo,
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Constants.primaryTextColor,
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.bold
-                ),
+                child: Text(
+                  this.tenzi.titleNo,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Constants.primaryTextColor,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -71,7 +64,7 @@ class LessonCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    this.lesson.title,
+                    this.tenzi.title,
                     style: TextStyle(
                       color: Constants.primaryTextColor,
                       fontWeight: FontWeight.w600,
@@ -82,7 +75,7 @@ class LessonCard extends StatelessWidget {
                     height: 5.0,
                   ),
                   Text(
-                    this.lesson.titleEnglish,
+                    this.tenzi.titleEnglish,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Constants.captionTextColor,
@@ -90,12 +83,14 @@ class LessonCard extends StatelessWidget {
                   ),
                 ],
               ),
-            ), IconButton(onPressed: (){
-              //ToDo -- Play corresponding audio
-            },
-                icon: Icon(Icons.play_circle_fill_rounded),
-                color: Constants.primaryColor,
-                ),
+            ),
+            IconButton(
+              onPressed: () {
+                //ToDo -- Play corresponding audio
+              },
+              icon: Icon(Icons.play_circle_fill_rounded),
+              color: Constants.primaryColor,
+            ),
             SizedBox(
               width: 15.0,
             )

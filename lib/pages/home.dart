@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/widgets/border_text_field.dart';
-import 'package:tenzi/widgets/lesson_card.dart';
+import 'package:tenzi/widgets/tenzi_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Tenzi> lessons = [
+  List<Tenzi> tenziList = [
     Tenzi(
         titleNo: "1",
         title: "Mwokozi umeokoa",
@@ -32,7 +32,64 @@ class _HomeState extends State<Home> {
         titleEnglish: "O for a thousand tongues to sing",
         verses: 'Blah blah'),
     Tenzi(
-        titleNo: "49",
+        titleNo: "1",
+        title: "Mwokozi umeokoa",
+        titleEnglish: "Precious Saviour",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "2",
+        title: "Twamsifu Mungu",
+        titleEnglish: "Whe praise Thee, O God",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "3",
+        title: "Hata ndimi elfu",
+        titleEnglish: "O for a thousand tongues to sing",
+        verses: 'Blah blah'),    Tenzi(
+        titleNo: "1",
+        title: "Mwokozi umeokoa",
+        titleEnglish: "Precious Saviour",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "2",
+        title: "Twamsifu Mungu",
+        titleEnglish: "Whe praise Thee, O God",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "3",
+        title: "Hata ndimi elfu",
+        titleEnglish: "O for a thousand tongues to sing",
+        verses: 'Blah blah'),    Tenzi(
+        titleNo: "1",
+        title: "Mwokozi umeokoa",
+        titleEnglish: "Precious Saviour",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "2",
+        title: "Twamsifu Mungu",
+        titleEnglish: "Whe praise Thee, O God",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "3",
+        title: "Hata ndimi elfu",
+        titleEnglish: "O for a thousand tongues to sing",
+        verses: 'Blah blah'),    Tenzi(
+        titleNo: "1",
+        title: "Mwokozi umeokoa",
+        titleEnglish: "Precious Saviour",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "2",
+        title: "Twamsifu Mungu",
+        titleEnglish: "Whe praise Thee, O God",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "3",
+        title: "Hata ndimi elfu",
+        titleEnglish: "O for a thousand tongues to sing",
+        verses: 'Blah blah'),
+    Tenzi(
+        titleNo: "161",
         title: "Jina la Yesu, salamu!",
         titleEnglish: "All hail for the power of Jesus",
         verses: 'Blah Blah')
@@ -189,9 +246,9 @@ class _HomeState extends State<Home> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return LessonCard(lesson: lessons[index]);
+                      return TenziCard(tenzi: tenziList[index]);
                     },
-                    itemCount: lessons.length,
+                    itemCount: tenziList.length,
                   ),
                 )
               ],
