@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<Tenzi> tenziList = [
     Tenzi(
         titleNo: "1",

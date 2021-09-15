@@ -9,10 +9,25 @@ class TenziDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo - to create detail screen UI.
+    /** Todo - to create detail screen UI.
+     *  - Add HTML View in place of body
+     */
     return Scaffold(
       appBar: AppBar(
         title: Text('${tenzi.titleNo} ' '${tenzi.title} '),
+        actions: [
+          IconButton(
+              onPressed: () {
+                /**ToDo - Play music on play icon clicked in Details screen
+                 * - Also use ternary operator to show pause icon & apply
+                 * onclick too for it to pause a Tenzi
+                 */
+              },
+              icon: Icon(
+                Icons.play_circle_filled,
+                color: Colors.black87,
+              )),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
