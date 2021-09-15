@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:tenzi/constants.dart';
-import 'package:tenzi/models/tenzi_model.dart';
+import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/widgets/border_text_field.dart';
 import 'package:tenzi/widgets/lesson_card.dart';
@@ -15,23 +15,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<TenziModel> lessons = [
-    TenziModel(
+  List<Tenzi> lessons = [
+    Tenzi(
         titleNo: "1",
         title: "Mwokozi umeokoa",
         titleEnglish: "Precious Saviour",
         verses: 'Blah blah'),
-    TenziModel(
+    Tenzi(
         titleNo: "2",
         title: "Twamsifu Mungu",
         titleEnglish: "Whe praise Thee, O God",
         verses: 'Blah blah'),
-    TenziModel(
+    Tenzi(
         titleNo: "3",
         title: "Hata ndimi elfu",
         titleEnglish: "O for a thousand tongues to sing",
         verses: 'Blah blah'),
-    TenziModel(
+    Tenzi(
         titleNo: "49",
         title: "Jina la Yesu, salamu!",
         titleEnglish: "All hail for the power of Jesus",

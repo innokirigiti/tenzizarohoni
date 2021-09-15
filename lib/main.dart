@@ -26,7 +26,7 @@ void main() {
         // initialRoute: '/',
         routes: {
           '/':(context)=>Home(),
-          '/tenzi_details':(context)=>TenziDetails(),
+          // '/tenzi_details':(context)=>TenziDetails(tenzi: null,),
         },
       )
   );

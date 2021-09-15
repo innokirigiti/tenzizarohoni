@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:tenzi/constants.dart';
-import 'package:tenzi/models/tenzi_model.dart';
+import 'package:tenzi/models/tenzi.dart';
+import 'package:tenzi/pages/tenzi_details.dart';
+import 'package:tenzi/models/tenzi.dart';
 
 class LessonCard extends StatelessWidget {
-  final TenziModel lesson;
+  final Tenzi lesson;
   LessonCard({required this.lesson});
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context,'/tenzi_details' );
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TenziDetails(
+              //ToDo - Hardcoded data, make it real depending on `ariving` data
+                tenzi: Tenzi(titleNo: '1', titleEnglish: 'En title',
+                    title: 'Mwokozi Mungu', verses: 'Vers blah blah')
+            ),
+          ),
+        );
       }, // Handle onTap anywhere along the lesson card
       child: Container(
         margin: EdgeInsets.only(bottom: 10.0),
