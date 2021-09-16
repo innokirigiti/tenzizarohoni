@@ -15,92 +15,34 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   List<Tenzi> tenziList = [
     Tenzi(
-        titleNo: "1",
+        titleNo: 1,
         title: "Mwokozi umeokoa",
-        titleEnglish: "Precious Saviour",
+        titleEn: "Precious Saviour",
         verses: 'Blah blah'),
     Tenzi(
-        titleNo: "2",
+        titleNo: 2,
         title: "Twamsifu Mungu",
-        titleEnglish: "Whe praise Thee, O God",
+        titleEn: "Whe praise Thee, O God",
         verses: 'Blah blah'),
     Tenzi(
-        titleNo: "3",
+        titleNo: 3,
         title: "Hata ndimi elfu",
-        titleEnglish: "O for a thousand tongues to sing",
+        titleEn: "O for a thousand tongues to sing",
         verses: 'Blah blah'),
     Tenzi(
-        titleNo: "1",
-        title: "Mwokozi umeokoa",
-        titleEnglish: "Precious Saviour",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "2",
+        titleNo: 4,
         title: "Twamsifu Mungu",
-        titleEnglish: "Whe praise Thee, O God",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "3",
-        title: "Hata ndimi elfu",
-        titleEnglish: "O for a thousand tongues to sing",
-        verses: 'Blah blah'),    Tenzi(
-        titleNo: "1",
-        title: "Mwokozi umeokoa",
-        titleEnglish: "Precious Saviour",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "2",
-        title: "Twamsifu Mungu",
-        titleEnglish: "Whe praise Thee, O God",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "3",
-        title: "Hata ndimi elfu",
-        titleEnglish: "O for a thousand tongues to sing",
-        verses: 'Blah blah'),    Tenzi(
-        titleNo: "1",
-        title: "Mwokozi umeokoa",
-        titleEnglish: "Precious Saviour",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "2",
-        title: "Twamsifu Mungu",
-        titleEnglish: "Whe praise Thee, O God",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "3",
-        title: "Hata ndimi elfu",
-        titleEnglish: "O for a thousand tongues to sing",
-        verses: 'Blah blah'),    Tenzi(
-        titleNo: "1",
-        title: "Mwokozi umeokoa",
-        titleEnglish: "Precious Saviour",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "2",
-        title: "Twamsifu Mungu",
-        titleEnglish: "Whe praise Thee, O God",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "3",
-        title: "Hata ndimi elfu",
-        titleEnglish: "O for a thousand tongues to sing",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: "161",
-        title: "Jina la Yesu, salamu!",
-        titleEnglish: "All hail for the power of Jesus",
-        verses: 'Blah Blah')
+        titleEn: "Whe praise Thee, O God",
+        verses: 'Blah blah')
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:BorderTextField(
+        title: BorderTextField(
           suffixIcon: Icon(
             Icons.search,
             color: Colors.grey,

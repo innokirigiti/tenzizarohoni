@@ -46,7 +46,7 @@ class TenziCard extends StatelessWidget {
                   color: Colors.amber[800]),
               child: Center(
                 child: Text(
-                  this.tenzi.titleNo,
+                  (this.tenzi.titleNo).toString(),
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryTextColor,
@@ -75,7 +75,7 @@ class TenziCard extends StatelessWidget {
                     height: 5.0,
                   ),
                   Text(
-                    this.tenzi.titleEnglish,
+                    this.tenzi.titleEn??' ', // If the en title is null,use space
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Constants.captionTextColor,
