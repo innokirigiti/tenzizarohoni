@@ -13,6 +13,7 @@ import 'package:tenzi/pages/tenzi_details.dart';
 import 'pages/home.dart';
 
 void main() {
+
   runApp(
       MaterialApp(
         theme: ThemeData(
@@ -30,4 +31,5 @@ void main() {
         },
       )
   );
+
 }

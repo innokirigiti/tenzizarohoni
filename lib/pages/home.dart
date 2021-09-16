@@ -1,4 +1,6 @@
+import 'package:copy_large_file/copy_large_file.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:tenzi/constants.dart';
@@ -15,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<Tenzi> tenziList = [
     Tenzi(
         titleNo: 1,
@@ -37,6 +40,13 @@ class _HomeState extends State<Home> {
         titleEn: "Whe praise Thee, O God",
         verses: 'Blah blah')
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Copy tenzi.db into docs directory for use within the app
+    copyTenziDatabase();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,121 +76,6 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 15.0,
                 ),
-                // Container(
-                //   // height: ScreenUtil().setHeight(180.0),
-                //   // width: ScreenUtil().setWidth(339.24),
-                //   height: 180,
-                //   width: 339.24,
-                //   decoration: BoxDecoration(
-                //     color: Constants.primaryColor,
-                //     borderRadius: BorderRadius.circular(8.0),
-                //     boxShadow: [
-                //       BoxShadow(
-                //         color: Color.fromRGBO(255, 99, 128, 0.6),
-                //         spreadRadius: 0,
-                //         blurRadius: 6,
-                //         offset: Offset(0, 2), // changes position of shadow
-                //       ),
-                //     ],
-                //   ),
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: Padding(
-                //           padding: const EdgeInsets.all(10.0),
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.stretch,
-                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //             children: [
-                //               Row(
-                //                 children: [
-                //                   Container(
-                //                     width: 30.0,
-                //                     height: 30.0,
-                //                     decoration: BoxDecoration(
-                //                       shape: BoxShape.circle,
-                //                       color: Colors.white,
-                //                     ),
-                //                     child: Center(
-                //                       child: Text(
-                //                         "20",
-                //                         style: TextStyle(
-                //                           color: Constants.primaryTextColor,
-                //                           fontWeight: FontWeight.w600,
-                //                         ),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                   SizedBox(
-                //                     width: 10.0,
-                //                   ),
-                //                   Text(
-                //                     "Points",
-                //                     style: TextStyle(
-                //                       color: Colors.white,
-                //                       fontWeight: FontWeight.w600,
-                //                       fontSize: 14.0,
-                //                     ),
-                //                   )
-                //                 ],
-                //               ),
-                //               Text(
-                //                 "Daily English Conversation",
-                //                 style: TextStyle(
-                //                   color: Colors.white,
-                //                   fontWeight: FontWeight.w600,
-                //                   fontSize: 24.0,
-                //                 ),
-                //               ),
-                //               Text(
-                //                 "Learn More",
-                //                 style: TextStyle(
-                //                   color: Colors.white,
-                //                   fontSize: 20.0,
-                //                 ),
-                //               )
-                //             ],
-                //           ),
-                //         ),
-                //       ),
-                //       Expanded(
-                //         child: Container(
-                //           decoration: BoxDecoration(
-                //             image: DecorationImage(
-                //               fit: BoxFit.fill,
-                //               image: AssetImage(
-                //                 "assets/images/course-1.png",
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 30.0,
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text(
-                //       "My lessons",
-                //       style: TextStyle(
-                //         fontSize: 21.0,
-                //         color: Constants.primaryTextColor,
-                //         fontWeight: FontWeight.w600,
-                //       ),
-                //     ),
-                //     Text(
-                //       "View all",
-                //       style: TextStyle(
-                //         fontSize: 15.0,
-                //         color: Constants.captionTextColor,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 SizedBox(
                   height: 12.0,
                 ),
@@ -200,5 +95,23 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  // Copy the database from assets & iOS bundle into docs directory 4 use.
+  //On initial app install
+  Future<void> copyTenziDatabase() async {
+    String? platformVersion;
+    try {
+      platformVersion = await CopyLargeFile.platformVersion;
+      print(platformVersion);
+      String yep = await CopyLargeFile("tenzi.db").copyLargeFile;
+    } on PlatformException {
+      print('Failed to copy the Tenzi DB File.');
+      return;
+    }
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
   }
 }

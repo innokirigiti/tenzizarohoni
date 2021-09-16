@@ -3,9 +3,12 @@ class Tenzi {
   late final String? titleEn; // English name
   late final String title;     //Swahili name
   late final int? titleNo;  // No ya Tenzi - (Same as ID)
-  late final String verses;  // A string representation of All verses of a Tenzi in HTML
+  late final String verses;  // A string rep of All verses of a Tenzi in HTML
   Tenzi({required this.verses,required this.title, required this.titleNo, required this.titleEn});
 
+  /// fromMap constructor to change Map of Tenzi into tenzi object & returns IT
+  /// Useful when needing to convert a tenzi map(return of a database query)
+  /// into a real Tenzi object (for uses such as  in a ListView)
   Tenzi.fromMap(Map<String, dynamic> res)
   {
     titleNo = res["title_no"];
@@ -14,6 +17,9 @@ class Tenzi {
   titleEn = res["title_en"];
   }
 
+  /// toMap method to change a tenzi object into a Map of Tenzi
+  /// Useful when needing to insert a tenzi object into a database
+  ///
   Map<String, Object?> toMap() {
     return {'title_no':titleNo,'title': title, 'verses': verses, 'title_en': titleEn};
   }
