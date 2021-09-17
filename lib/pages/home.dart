@@ -1,13 +1,15 @@
 import 'package:copy_large_file/copy_large_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:tenzi/constants.dart';
 import 'package:tenzi/models/tenzi.dart';
+import 'package:tenzi/models/tenzidatabase_helper.dart';
 import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/widgets/border_text_field.dart';
 import 'package:tenzi/widgets/tenzi_card.dart';
+
+import '../constants.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,34 +21,21 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 //ToDo - Implement list searching capability
 
-  List<Tenzi> tenziList = [
-    Tenzi(
-        titleNo: 1,
-        title: "Mwokozi umeokoa",
-        titleEn: "Precious Saviour",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: 2,
-        title: "Twamsifu Mungu",
-        titleEn: "Whe praise Thee, O God",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: 3,
-        title: "Hata ndimi elfu",
-        titleEn: "O for a thousand tongues to sing",
-        verses: 'Blah blah'),
-    Tenzi(
-        titleNo: 4,
-        title: "Twamsifu Mungu",
-        titleEn: "Whe praise Thee, O God",
-        verses: 'Blah blah')
-  ];
+  //Empty list to be populated later with Tenzi objects
+  var tenziList =[];
+
+  dbDealing() async {
+    var _tenziList = await DatabaseHelper().retrieveTenzi();
+    setState(() {
+      tenziList =_tenziList;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     // Copy tenzi.db into docs directory for use within the app
-    copyTenziDatabase();
+    dbDealing();
   }
 
   @override
@@ -81,7 +70,11 @@ class _HomeState extends State<Home> {
                   height: 12.0,
                 ),
                 Flexible(
-                  child: ListView.builder(
+                  //If tenziList =null, show spinner, else List of Tenzi
+                  child: (tenziList.isEmpty)? SpinKitThreeBounce(
+                    color: Constants.primaryColor,
+                    size: 50.0,
+                  ) :ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
@@ -98,21 +91,4 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // Copy the database from assets & iOS bundle into docs directory 4 use.
-  //On initial app install
-  Future<void> copyTenziDatabase() async {
-    String? platformVersion;
-    try {
-      platformVersion = await CopyLargeFile.platformVersion;
-      print(platformVersion);
-      String yep = await CopyLargeFile("tenzi.db").copyLargeFile;
-    } on PlatformException {
-      print('Failed to copy the Tenzi DB File.');
-      return;
-    }
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-  }
 }
