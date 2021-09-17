@@ -1,11 +1,8 @@
-//ToDo - Integrate full Database logic & complete cycle
-import 'dart:io';
+
 
 import 'package:copy_large_file/copy_large_file.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:tenzi/models/tenzi.dart';
 
 class DatabaseHelper {
@@ -17,6 +14,7 @@ class DatabaseHelper {
 
   //Initialize the DB using the path provided & return the DB instance Object
   Future<Database> initializeDB() async {
+
     //We already know the path, call the copyTenziDatabase to return it
     String path = await copyTenziDatabase();
 

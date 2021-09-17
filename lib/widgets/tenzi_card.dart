@@ -50,7 +50,6 @@ class TenziCard extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20,
                       color: Constants.primaryTextColor,
-                      letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
               ),

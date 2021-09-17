@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
-
+//ToDo - Design the drawer (or use a bottom NavigationBar)
   @override
   Widget build(BuildContext context) {
     return Drawer(

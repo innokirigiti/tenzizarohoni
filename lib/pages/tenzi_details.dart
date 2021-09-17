@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:tenzi/constants.dart';
 import 'package:tenzi/models/tenzi.dart';
 
 class TenziDetails extends StatelessWidget {
@@ -33,7 +34,13 @@ class TenziDetails extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Html(
-          data: """<center>${tenzi.verses}</center>""",
+          data: """<p>${tenzi.verses}</p>""",
+          style:{
+            // text that renders p elements will be centered
+            "p": Style(textAlign: TextAlign.center,
+                fontSize: FontSize(Constants.versesFontSize)
+            ),
+          },
         ),
 
       //   child: Html(
