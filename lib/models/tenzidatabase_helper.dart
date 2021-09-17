@@ -1,23 +1,41 @@
 //ToDo - Integrate full Database logic & complete cycle
 import 'dart:io';
 
+import 'package:copy_large_file/copy_large_file.dart';
+import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tenzi/models/tenzi.dart';
 
 class DatabaseHelper {
+
+  var dbName = 'tenzi.db';
+  var songsTable = 'songs';
+
+// ToDo - Ensure there is a successful database upgrading
+
   //Initialize the DB using the path provided & return the DB instance Object
   Future<Database> initializeDB() async {
-// ToDo - Ensure there is a successful database upgrading
-    //We already know the path, retrieve & provide it to the openDatabase method
-    Directory docsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(docsDirectory.path, 'tenzi.db');
+    //We already know the path, call the copyTenziDatabase to return it
+    String path = await copyTenziDatabase();
 
-    return openDatabase(
-      path,
-      version: 1,
-    );
+    //Create connection to the db using the path above
+    var dbInstance = await openDatabase(path, version: 1);
+    return dbInstance;
+  }
+
+  //Copy the existing tenzi.db from assets to docs directory & return a path
+  Future<String> copyTenziDatabase() async {
+    try {
+      String _path = await CopyLargeFile(dbName).copyLargeFile;
+      print('Database path is: $_path');
+     return _path;
+    }
+     on PlatformException {
+      print('Failed to copy the Tenzi DB File.');
+      return 'Error Copying $dbName ';
+    }
   }
 
   //Get a list of all Tenzi from tenzi.db, it returns List<Tenzi> ready for use
@@ -25,7 +43,7 @@ class DatabaseHelper {
   Future<List<Tenzi>> retrieveTenzi() async {
     final Database db = await initializeDB();
     //Query from songs table in tenzi.db
-    final List<Map<String, Object?>> queryResult = await db.query('songs');
+    final List<Map<String, dynamic>> queryResult = await db.query(songsTable);
     return queryResult.map((e) => Tenzi.fromMap(e)).toList();
   }
 
