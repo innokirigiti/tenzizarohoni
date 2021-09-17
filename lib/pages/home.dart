@@ -74,13 +74,15 @@ class _HomeState extends State<Home> {
                   child: (tenziList.isEmpty)? SpinKitThreeBounce(
                     color: Constants.primaryColor,
                     size: 50.0,
-                  ) :ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return TenziCard(tenzi: tenziList[index]);
-                    },
-                    itemCount: tenziList.length,
+                  ) :Scrollbar(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return TenziCard(tenzi: tenziList[index]);
+                      },
+                      itemCount: tenziList.length,
+                    ),
                   ),
                 )
               ],

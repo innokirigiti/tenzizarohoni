@@ -21,7 +21,7 @@ class TenziCard extends StatelessWidget {
       }, // Handle onTap anywhere along the lesson card
       child: Container(
         margin: EdgeInsets.only(bottom: 10.0),
-        padding: EdgeInsets.all(6.0),
+        padding: EdgeInsets.all(5.0),
         width: double.infinity,
         height: 65,
         decoration: BoxDecoration(
@@ -39,8 +39,8 @@ class TenziCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 55.0,
-              width: 55.0,
+              height: 50.0,
+              width: 50.0,
               decoration: BoxDecoration(
                   // color: Color.fromRGBO(224, 230, 255, 1),
                   color: Colors.amber[800]),
@@ -48,7 +48,7 @@ class TenziCard extends StatelessWidget {
                 child: Text(
                   (this.tenzi.titleNo).toString(),
                   style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       color: Constants.primaryTextColor,
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
@@ -56,7 +56,7 @@ class TenziCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 25.0,
+              width: 15.0,
             ),
             Expanded(
               child: Column(
@@ -72,7 +72,7 @@ class TenziCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 5.0,
+                    height: 3.0,
                   ),
                   Text(
                     this.tenzi.titleEn??' ', // If the en title is null,use space
@@ -93,7 +93,7 @@ class TenziCard extends StatelessWidget {
               color: Constants.primaryColor,
             ),
             SizedBox(
-              width: 5.0,
+              width: 3.0,
             )
           ],
         ),

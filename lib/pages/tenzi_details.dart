@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:tenzi/models/tenzi.dart';
 
 class TenziDetails extends StatelessWidget {
@@ -9,7 +10,7 @@ class TenziDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /** Todo - to create detail screen UI.
+    /** Todo - to create detail screen UI - Render HTML.
      *  - Add HTML View in place of body
      */
     return Scaffold(
@@ -31,7 +32,14 @@ class TenziDetails extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Text(tenzi.verses),
+        child: Html(
+          data: """<center>${tenzi.verses}</center>""",
+        ),
+
+      //   child: Html(
+      //   data:tenzi.verses,
+      // ),
+        // child: Text(tenzi.verses),
       ),
     );
   }
