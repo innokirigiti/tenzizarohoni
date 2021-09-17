@@ -2,6 +2,7 @@ import 'package:copy_large_file/copy_large_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:search_page/search_page.dart';
 
 import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/models/tenzidatabase_helper.dart';
@@ -19,15 +20,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-//ToDo - Implement list searching capability
+  //Declare a textEditingController to capture search inputs
+  TextEditingController? _textEditingController = TextEditingController();
 
   //Empty list to be populated later with Tenzi objects
-  var tenziList =[];
+  var tenziList = <Tenzi>[];
+  String searchText = '';
 
+  //A method to deal with database issues
   dbDealing() async {
     var _tenziList = await DatabaseHelper().retrieveTenzi();
     setState(() {
-      tenziList =_tenziList;
+      tenziList = _tenziList;
     });
   }
 
@@ -42,15 +46,35 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: BorderTextField(
-          suffixIcon: Icon(
-            Icons.search,
-            color: Colors.grey,
-          ),
-          borderRadius: 50.0,
-          hintText: "Tafuta Nyimbo...",
-        ),
+        title: Text('Tenzi Za Rohoni'),
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () => showSearch(//From search plugin
+                    context: context,
+                    delegate: SearchPage<Tenzi>(
+                      items: tenziList,
+                      searchLabel: 'Tafuta Wimbo',
+                      suggestion: Center(
+                        child: Text('Tafuta kwa namba ya Wimbo au Jina'),
+                      ),
+                      failure: Center(
+                        child: Text('Hakuna Wimbo kama hiyo :('),
+                      ),
+                      filter: (tenzi) => [
+                        tenzi.title,
+                        tenzi.titleNo.toString(),
+                      ],
+                      builder: (tenzi) => TenziCard(tenzi: tenzi),
+                      // builder: (tenzi) => ListTile(
+                      //   title: Text(tenzi.title),
+                      //   subtitle: Text(tenzi.titleEn??''),
+                      //   leading: Text(tenzi.titleNo.toString()),
+                      // ),
+                    ),
+                  ),
+              icon: Icon(Icons.search))
+        ],
       ),
       drawer: CustomDrawer(),
       // bottomNavigationBar: BottomBar(), available on og
@@ -62,29 +86,27 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // UserMenuBar(), available on og
                 SizedBox(
                   height: 15.0,
                 ),
-                SizedBox(
-                  height: 12.0,
-                ),
                 Flexible(
                   //If tenziList =null, show spinner, else List of Tenzi
-                  child: (tenziList.isEmpty)? SpinKitThreeBounce(
-                    color: Constants.primaryColor,
-                    size: 50.0,
-                  ) :Scrollbar(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return TenziCard(tenzi: tenziList[index]);
-                      },
-                      itemCount: tenziList.length,
-                    ),
-                  ),
-                )
+                  child: (tenziList.isEmpty)
+                      ? SpinKitThreeBounce(
+                          color: Constants.primaryColor,
+                          size: 50.0,
+                        )
+                      : Scrollbar(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) {
+                              return TenziCard(tenzi: tenziList[index]);
+                            },
+                            itemCount: tenziList.length,
+                          ),
+                        ),
+                ),
               ],
             ),
           ),
@@ -92,5 +114,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 }

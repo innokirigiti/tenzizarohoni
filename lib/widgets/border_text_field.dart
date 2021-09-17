@@ -6,16 +6,19 @@ import '../constants.dart';
 class BorderTextField extends StatelessWidget {
   final String? hintText;
   final bool obscureText;
-  final Icon? suffixIcon;
+  final IconButton? suffixIcon;
   final Icon? prefixIcon;
   final double borderRadius;
+  final TextEditingController? controller;
+  var onChanged;
+
 
   BorderTextField(
       {this.hintText,
       this.obscureText = false,
       this.suffixIcon,
       this.prefixIcon,
-      this.borderRadius = 8.0});
+      this.borderRadius = 8.0,this.controller,this.onChanged});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,6 +52,8 @@ class BorderTextField extends StatelessWidget {
             color: Color.fromRGBO(169, 176, 185, 1),
           ),
         ),
+        controller: controller,
+        onChanged: onChanged,
       ),
     );
   }

@@ -12,7 +12,7 @@ class TenziDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /** Todo - to create detail screen UI - Render HTML.
-     *  - Add HTML View in place of body
+     * ToDo - Implement list searching capability
      */
     return Scaffold(
       appBar: AppBar(
@@ -36,17 +36,13 @@ class TenziDetails extends StatelessWidget {
         child: Html(
           data: """<p>${tenzi.verses}</p>""",
           style:{
-            // text that renders p elements will be centered
+            // text that renders p and em elements will be centered
+            //Fix the issue of text size for <em> tags
             "p": Style(textAlign: TextAlign.center,
-                fontSize: FontSize(Constants.versesFontSize)
+                fontSize: FontSize(Constants.versesFontSize),
             ),
           },
         ),
-
-      //   child: Html(
-      //   data:tenzi.verses,
-      // ),
-        // child: Text(tenzi.verses),
       ),
     );
   }

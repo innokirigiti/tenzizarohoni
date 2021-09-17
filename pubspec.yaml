@@ -34,6 +34,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   flutter_spinkit: ^5.1.0
   flutter_html: ^2.1.2
+  search_page: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
