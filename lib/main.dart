@@ -12,7 +12,8 @@ import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/pages/tenzi_details.dart';
 import 'package:tenzi/widgets/border_text_field.dart';
 import 'package:tenzi/widgets/tenzi_card.dart';
-//
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 // import 'package:flutter/services.dart';
 // import 'package:copy_large_file/copy_large_file.dart';
 // import 'package:path/path.dart';
@@ -67,13 +68,7 @@ class DemoHome extends StatefulWidget {
 class _DemoHomeState extends State<DemoHome> {
   var path ='No path';
 
-  var tenziList = [
-    Tenzi(
-        verses: 'demo verses',
-        title: 'demoTitle',
-        titleNo: 6,
-        titleEn: 'demoTitleEn')
-  ];
+  var tenziList =[];
 
   // var dbInitialization = DatabaseHelper().retrieveTenzi();
 
@@ -123,7 +118,11 @@ class _DemoHomeState extends State<DemoHome> {
                   height: 12.0,
                 ),
                 Flexible(
-                  child: ListView.builder(
+                  //If tenziList =null, show spinner, else List of Tenzi
+                  child: (tenziList.isEmpty)? SpinKitThreeBounce(
+                    color: Constants.primaryColor,
+                    size: 50.0,
+                  ) :ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {

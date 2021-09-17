@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+//ToDo - Implement list searching capability
 
   List<Tenzi> tenziList = [
     Tenzi(
