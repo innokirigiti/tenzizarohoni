@@ -76,6 +76,7 @@ class TenziCard extends StatelessWidget {
                   ),
                   Text(
                     this.tenzi.titleEn??' ', // If the en title is null,use space
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Constants.captionTextColor,
@@ -92,7 +93,7 @@ class TenziCard extends StatelessWidget {
               color: Constants.primaryColor,
             ),
             SizedBox(
-              width: 15.0,
+              width: 5.0,
             )
           ],
         ),

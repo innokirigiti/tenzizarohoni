@@ -6,7 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:tenzi/constants.dart';
+import 'package:tenzi/models/tenzi.dart';
+import 'package:tenzi/models/tenzidatabase_helper.dart';
+import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/pages/tenzi_details.dart';
+import 'package:tenzi/widgets/border_text_field.dart';
+import 'package:tenzi/widgets/tenzi_card.dart';
 //
 // import 'package:flutter/services.dart';
 // import 'package:copy_large_file/copy_large_file.dart';
@@ -61,52 +66,74 @@ class DemoHome extends StatefulWidget {
 
 class _DemoHomeState extends State<DemoHome> {
   var path ='No path';
-  var tenziList;
 
-//    openDatabase(path) async{
-//     // Avoid errors caused by flutter upgrade.
-// // Importing 'package:flutter/widgets.dart' is required.
-//     WidgetsFlutterBinding.ensureInitialized();
-// // Open the database and store the reference.
-//     final database = openDatabase(path);
-//   }
+  var tenziList = [
+    Tenzi(
+        verses: 'demo verses',
+        title: 'demoTitle',
+        titleNo: 6,
+        titleEn: 'demoTitleEn')
+  ];
 
-  Future<void> copyTenziDatabase() async {
-    String? platformVersion;
-    try {
-      platformVersion = await CopyLargeFile.platformVersion;
-      print(platformVersion);
-      String _path = await CopyLargeFile("tenzi.db").copyLargeFile;
-      print(_path);
-      setState(() {
-        path = _path;
-      });
+  // var dbInitialization = DatabaseHelper().retrieveTenzi();
 
-    } on PlatformException {
-      print('Failed to copy the Tenzi DB File.');
-      return;
-    }
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+  dbDealing() async {
+    var _tenziList = await DatabaseHelper().retrieveTenzi();
+    setState(() {
+      tenziList =_tenziList;
+    });
   }
 
   @override
   void initState() {
     super.initState();
     // Copy tenzi.db into docs directory for use within the app
-    copyTenziDatabase();
+    dbDealing();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Center(
+      appBar: AppBar(
+        title: BorderTextField(
+          suffixIcon: Icon(
+            Icons.search,
+            color: Colors.grey,
+          ),
+          borderRadius: 50.0,
+          hintText: "Tafuta Nyimbo...",
+        ),
+        elevation: 0,
+      ),
+      drawer: CustomDrawer(),
+      // bottomNavigationBar: BottomBar(), available on og
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Container(
-            child: Text(path),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // UserMenuBar(), available on og
+                SizedBox(
+                  height: 15.0,
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return TenziCard(tenzi: tenziList[index]);
+                    },
+                    itemCount: tenziList.length,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
