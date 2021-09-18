@@ -73,7 +73,9 @@ class _HomeState extends State<Home> {
                       // ),
                     ),
                   ),
-              icon: Icon(Icons.search))
+              icon: Icon(Icons.search,
+              )),
+          SizedBox(width: 25,)
         ],
       ),
       drawer: CustomDrawer(),

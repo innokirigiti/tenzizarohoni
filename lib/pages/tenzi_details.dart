@@ -37,9 +37,11 @@ class TenziDetails extends StatelessWidget {
           data: """<p>${tenzi.verses}</p>""",
           style:{
             // text that renders p and em elements will be centered
-            //Fix the issue of text size for <em> tags
             "p": Style(textAlign: TextAlign.center,
                 fontSize: FontSize(Constants.versesFontSize),
+            ),
+            "font": Style(textAlign: TextAlign.center,
+              fontSize: FontSize(Constants.versesFontSize),
             ),
           },
         ),
