@@ -1,3 +1,0 @@
-Detail screen & navigation sys (Details body torender HTML string)
-- Structure the DB to have verses Column with all HTML Formated verses,
-- Implement real logic to push data from home(when tenzicard clicked) to Details screen

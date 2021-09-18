@@ -13,6 +13,7 @@ class TenziDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     /** Todo - to create detail screen UI - Render HTML.
      * ToDo - Implement list searching capability
+     * ToDo - Add Splash screen
      */
     return Scaffold(
       appBar: AppBar(
@@ -45,6 +46,12 @@ class TenziDetails extends StatelessWidget {
             ),
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          //ToDo - Add Favorite capability
+        onPressed: (){},
+        child: Icon(Icons.favorite_border),
+        backgroundColor: Constants.primaryColor,
       ),
     );
   }
