@@ -32,19 +32,26 @@ class TenziDetails extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Html(
-          data: """<p>${tenzi.verses}</p>""",
-          style:{
-            // text that renders p and em elements will be centered
-            "p": Style(textAlign: TextAlign.center,
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        child: SingleChildScrollView(
+          child: Html(
+            data: """<p>${tenzi.verses}</p>""",
+            style:{
+              // text that renders p and em elements will be centered
+              "p": Style(textAlign: TextAlign.center,
+                  fontSize: FontSize(Constants.versesFontSize),
+              ),
+              "font": Style(textAlign: TextAlign.center,
                 fontSize: FontSize(Constants.versesFontSize),
-            ),
-            "font": Style(textAlign: TextAlign.center,
-              fontSize: FontSize(Constants.versesFontSize),
-            ),
-          },
+              ),
+            },
+          ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},//ToDO - Use a package to add favorite functionality
+      child: Icon(Icons.favorite_border),
+        backgroundColor: Constants.primaryColor,
       ),
     );
   }
