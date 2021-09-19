@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
           SizedBox(width: 25,)
         ],
       ),
-      drawer: CustomDrawer(),
+      drawer: NavDrawer(),
       // bottomNavigationBar: BottomBar(), available on og
       body: SingleChildScrollView(
         child: SafeArea(

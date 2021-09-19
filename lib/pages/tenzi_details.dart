@@ -1,3 +1,4 @@
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:tenzi/constants.dart';
@@ -32,7 +33,7 @@ class TenziDetails extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 75),
         child: SingleChildScrollView(
           child: Html(
             data: """<p>${tenzi.verses}</p>""",
@@ -50,7 +51,11 @@ class TenziDetails extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){},//ToDO - Use a package to add favorite functionality
-      child: Icon(Icons.favorite_border),
+      child: FavoriteButton(
+        iconSize: 25,
+        isFavorite: true,
+        valueChanged: (){},
+      ),
         backgroundColor: Constants.primaryColor,
       ),
     );
