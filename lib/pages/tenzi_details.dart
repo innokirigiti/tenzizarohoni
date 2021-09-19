@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:tenzi/constants.dart';
 import 'package:tenzi/models/tenzi.dart';
+import 'package:tenzi/models/tenzidatabase_helper.dart';
 
 class TenziDetails extends StatelessWidget {
   const TenziDetails({Key? key, required this.tenzi}) : super(key: key);
@@ -54,11 +55,21 @@ class TenziDetails extends StatelessWidget {
       child: FavoriteButton(
         iconSize: 45,
         iconDisabledColor: Colors.black87,
-        isFavorite: true,
-        valueChanged: (){},
+        isFavorite: false,
+        valueChanged: (_isFavorite) async{
+          if(_isFavorite == true){
+            await DatabaseHelper().updateFavorites(1, tenzi.titleNo!);
+          }else
+            await DatabaseHelper().updateFavorites(0, tenzi.titleNo!);
+        },
       ),
         backgroundColor: Constants.primaryColor,
       ),
     );
   }
+}
+
+//Method to update DB with favs
+updateDB(value,titleNo) async {
+  await DatabaseHelper().updateFavorites(value, titleNo);
 }

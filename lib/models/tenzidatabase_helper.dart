@@ -54,4 +54,16 @@ class DatabaseHelper {
     await db.rawQuery('SELECT * FROM $songsTable WHERE is_favorite = 1;');
     return queryResult.map((e) => Tenzi.fromMap(e)).toList();
   }
+
+  //Update Favorite Tenzi
+  // Takes a value from favButton(true/false) & titleNo
+  Future<void> updateFavorites(value,int titleNo) async {
+    final Database db = await initializeDB();
+    //Query from songs table in tenzi.db
+    final List<Map<String, dynamic>> queryResult =
+    await db.rawQuery('''
+UPDATE $songsTable SET is_favorite = '$value' WHERE title_no = $titleNo;
+    ''');
+  }
+
 }
