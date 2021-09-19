@@ -55,7 +55,7 @@ class TenziDetails extends StatelessWidget {
       child: FavoriteButton(
         iconSize: 45,
         iconDisabledColor: Colors.black87,
-        isFavorite: false,//ToDO - fetch isFavourite from DB - Update the Tenzi object
+        isFavorite: (tenzi.isFavorite==1)?true:false,
         valueChanged: (_isFavorite) async{
           //If changed value is true, Update to 1 in DB with respective titleNo
           if(_isFavorite == true){
