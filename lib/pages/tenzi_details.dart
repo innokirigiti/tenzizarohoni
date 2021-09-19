@@ -52,7 +52,8 @@ class TenziDetails extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: (){},//ToDO - Use a package to add favorite functionality
       child: FavoriteButton(
-        iconSize: 25,
+        iconSize: 45,
+        iconDisabledColor: Colors.black87,
         isFavorite: true,
         valueChanged: (){},
       ),

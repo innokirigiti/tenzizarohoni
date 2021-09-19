@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tenzi/constants.dart';
 
+import 'favorite_songs.dart';
+
 class NavDrawer extends StatelessWidget {
   const NavDrawer({Key? key}) : super(key: key);
 //ToDo - Design the drawer (or use a bottom NavigationBar)
@@ -31,25 +33,25 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text("Favorites"),
+            title: Text("Nyimbo Pendwa"),
             leading: IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            // onTap: ()
-            // {
-            //   Navigator.of(context).pop();
-            //   Navigator.of(context).push(MaterialPageRoute(
-            //       builder: (BuildContext context) => MyHomePage()));
-            // },
+            onTap: ()
+            {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => FavoriteSongs()));
+            },
           ),
           Divider(
             color: Colors.grey,
           ),
           ListTile(
-            title: Text("Settings"),
+            title: Text("Mipangilio"),
             leading: IconButton(
               icon: Icon(Icons.settings),
               onPressed: () {
