@@ -45,4 +45,13 @@ class DatabaseHelper {
     return queryResult.map((e) => Tenzi.fromMap(e)).toList();
   }
 
+  //Get a list of all Favorite Tenzi
+  // by filtering only Tenzis with  (is_favorite = 1) column in tenzi.db
+  Future<List<Tenzi>> retrieveFavorites() async {
+    final Database db = await initializeDB();
+    //Query from songs table in tenzi.db
+    final List<Map<String, dynamic>> queryResult =
+    await db.rawQuery('SELECT * FROM $songsTable WHERE is_favorite = 1;');
+    return queryResult.map((e) => Tenzi.fromMap(e)).toList();
+  }
 }

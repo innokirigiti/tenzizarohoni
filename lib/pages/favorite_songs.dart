@@ -25,7 +25,7 @@ class _FavoriteSongsState extends State<FavoriteSongs> {
 
   //A method to deal with database issues
   dbDealing() async {
-    var _tenziList = await DatabaseHelper().retrieveTenzi();
+    var _tenziList = await DatabaseHelper().retrieveFavorites();
     setState(() {
       tenziList = _tenziList;
     });
