@@ -51,15 +51,16 @@ class TenziDetails extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},//ToDO - Use a package to add favorite functionality
+        onPressed: (){},
       child: FavoriteButton(
         iconSize: 45,
         iconDisabledColor: Colors.black87,
-        isFavorite: false,
+        isFavorite: false,//ToDO - fetch isFavourite from DB - Update the Tenzi object
         valueChanged: (_isFavorite) async{
+          //If changed value is true, Update to 1 in DB with respective titleNo
           if(_isFavorite == true){
             await DatabaseHelper().updateFavorites(1, tenzi.titleNo!);
-          }else
+          }else //Update to 0 in DB
             await DatabaseHelper().updateFavorites(0, tenzi.titleNo!);
         },
       ),
@@ -67,9 +68,4 @@ class TenziDetails extends StatelessWidget {
       ),
     );
   }
-}
-
-//Method to update DB with favs
-updateDB(value,titleNo) async {
-  await DatabaseHelper().updateFavorites(value, titleNo);
 }
