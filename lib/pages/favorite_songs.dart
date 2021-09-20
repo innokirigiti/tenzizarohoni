@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/models/tenzidatabase_helper.dart';
-import 'package:tenzi/pages/custom_drawer.dart';
 import 'package:tenzi/widgets/tenzi_card.dart';
 
 import '../constants.dart';
@@ -13,12 +12,8 @@ class FavoriteSongs extends StatefulWidget {
   @override
   _FavoriteSongsState createState() => _FavoriteSongsState();
 }
-//ToDo - Ensure only songs with is_favorite in db appear here
-//Query them from DB
-class _FavoriteSongsState extends State<FavoriteSongs> {
-  //Declare a textEditingController to capture search inputs
-  TextEditingController? _textEditingController = TextEditingController();
 
+class _FavoriteSongsState extends State<FavoriteSongs> {
   //Empty list to be populated later with Tenzi objects
   var tenziList = <Tenzi>[];
   String searchText = '';

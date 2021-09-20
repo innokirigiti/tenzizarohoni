@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tenzi/constants.dart';
+import 'package:tenzi/pages/settings_screen.dart';
 
 import 'favorite_songs.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({Key? key}) : super(key: key);
+
 //ToDo - Design the drawer (or use a bottom NavigationBar)
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child:ListView(
+      child: ListView(
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
@@ -21,7 +23,7 @@ class NavDrawer extends StatelessWidget {
                   Expanded(
                     flex: 6,
                     child: Text(
-                      "Tenzi App",
+                      "Tenzi Za Rohoni",
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 16,
@@ -34,14 +36,8 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text("Nyimbo Pendwa"),
-            leading: IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            onTap: ()
-            {
+            leading: Icon(Icons.favorite),
+            onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => FavoriteSongs()));
@@ -51,23 +47,15 @@ class NavDrawer extends StatelessWidget {
             color: Colors.grey,
           ),
           ListTile(
-            title: Text("Mipangilio"),
-            leading: IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-              },
-            ),
-            // onTap: ()
-            // {
-            //   Navigator.of(context).pop();
-            //   Navigator.of(context).push(MaterialPageRoute(
-            //       builder: (BuildContext context) => contact()));
-            // },
-          )
+              title: Text("Mipangilio"),
+              leading: Icon(Icons.settings),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => SettingsScreen()));
+              })
         ],
-      ) ,
+      ),
     );
   }
 }
-
-

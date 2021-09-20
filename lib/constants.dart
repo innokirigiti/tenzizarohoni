@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:language_learning_ui/models/course_model.dart';
-// import 'package:language_learning_ui/models/instructor_model.dart';
-// import 'package:language_learning_ui/models/topic_model.dart';
 
 class Constants {
   static const Color primaryTextColor = Color.fromRGBO(19, 19, 19, 1.0);

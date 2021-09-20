@@ -1,13 +1,10 @@
-import 'package:copy_large_file/copy_large_file.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:search_page/search_page.dart';
 
 import 'package:tenzi/models/tenzi.dart';
 import 'package:tenzi/models/tenzidatabase_helper.dart';
 import 'package:tenzi/pages/custom_drawer.dart';
-import 'package:tenzi/widgets/border_text_field.dart';
 import 'package:tenzi/widgets/tenzi_card.dart';
 
 import '../constants.dart';
@@ -21,7 +18,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //Declare a textEditingController to capture search inputs
-  TextEditingController? _textEditingController = TextEditingController();
 
   //Empty list to be populated later with Tenzi objects
   var tenziList = <Tenzi>[];
