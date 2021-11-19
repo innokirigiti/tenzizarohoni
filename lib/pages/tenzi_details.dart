@@ -34,6 +34,7 @@ class TenziDetails extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 75),
         child: SingleChildScrollView(
           child: Html(
+            //TODO - Add the zoom in/out to change fontsize of tenzidetails
             data: """<p>${tenzi.verses}</p>""",
             style:{
               // text that renders p and font elements will be centered
