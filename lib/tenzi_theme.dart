@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FooderlichTheme {
-  static TextTheme lightTextTheme = TextTheme(
+class TenziTheme {
+  static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
@@ -30,7 +30,7 @@ class FooderlichTheme {
     ),
   );
 
-  static TextTheme darkTextTheme = TextTheme(
+  static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
