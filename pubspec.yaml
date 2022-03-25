@@ -36,6 +36,7 @@ dependencies:
   flutter_html: ^2.1.2
   search_page: ^2.0.0+1
   favorite_button: ^0.0.4
+  google_fonts: 2.2.0
 
 dev_dependencies:
   flutter_test:
