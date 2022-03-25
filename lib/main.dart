@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
       MaterialApp(
-        theme: TenziTheme.light(),
+        theme: TenziTheme.dark(),
         initialRoute: '/',
         routes: {
           '/':(context)=>Home(),

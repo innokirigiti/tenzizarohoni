@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'constants.dart';
+
 class TenziTheme {
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
@@ -71,7 +73,7 @@ class TenziTheme {
       ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
+        backgroundColor: Constants.primaryColor,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
