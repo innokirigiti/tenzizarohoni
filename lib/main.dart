@@ -10,7 +10,6 @@ void main() async {
   runApp(
       MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColor: Constants.primaryColor,
         ),
