@@ -1,4 +1,6 @@
 # tenzi
+## A working app for popular swahili christian songs.
+## More features to be added
 
 App ya tenzi za rohoni Audio
 
